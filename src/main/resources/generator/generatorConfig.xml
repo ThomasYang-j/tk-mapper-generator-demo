@@ -16,72 +16,71 @@
             <property name="swagger" value="true"/>
         </plugin>
         
-        <!--通用代码生成器插件-->
+        <!--通用代码生成器插件  生成entity-->
         <plugin type="tk.mybatis.mapper.generator.TemplateFilePlugin">
-            <property name="targetProject" value="src/test/java"/>
-            <property name="targetPackage" value="test.mapper"/>
+            <property name="targetProject" value="src/main/java"/>
+            <property name="targetPackage" value="com.ealing.cloud.destroyer.orders.entity"/>
             <property name="templatePath" value="template/entityTemplate.ftl"/>
             <property name="mapperSuffix" value="Entity"/>
             <property name="fileName" value="${tableClass.shortClassName}${mapperSuffix}.java"/>
         </plugin>
         
         <!--通用代码生成器插件-->
-        <plugin type="tk.mybatis.mapper.generator.TemplateFilePlugin">
-            <property name="targetProject" value="src/test/java"/>
-            <property name="targetPackage" value="test.mapper"/>
+       <!--  <plugin type="tk.mybatis.mapper.generator.TemplateFilePlugin">
+            <property name="targetProject" value="src/main/java"/>
+            <property name="targetPackage" value="com.xxx.bi.model"/>
             <property name="templatePath" value="template/mapperTemplate.ftl"/>
             <property name="mapperSuffix" value="Mapper"/>
             <property name="fileName" value="${tableClass.shortClassName}${mapperSuffix}.java"/>
-        </plugin>
+        </plugin> -->
         
         <!--通用代码生成器插件-->
-        <plugin type="tk.mybatis.mapper.generator.TemplateFilePlugin">
+        <!-- <plugin type="tk.mybatis.mapper.generator.TemplateFilePlugin">
             <property name="targetProject" value="src/test/java"/>
             <property name="targetPackage" value="test.mapper"/>
             <property name="templatePath" value="template/restTemplate.ftl"/>
             <property name="mapperSuffix" value="Controller"/>
             <property name="fileName" value="${tableClass.shortClassName}${mapperSuffix}.java"/>
-        </plugin>
+        </plugin> -->
         
-        <plugin type="tk.mybatis.mapper.generator.TemplateFilePlugin">
+        <!-- <plugin type="tk.mybatis.mapper.generator.TemplateFilePlugin">
             <property name="targetProject" value="src/test/java"/>
             <property name="targetPackage" value="test.mapper"/>
             <property name="templatePath" value="template/serviceImplTemplate.ftl"/>
             <property name="mapperSuffix" value="ServiceImpl"/>
             <property name="fileName" value="${tableClass.shortClassName}${mapperSuffix}.java"/>
-        </plugin>
+        </plugin> -->
         
-        <plugin type="tk.mybatis.mapper.generator.TemplateFilePlugin">
+        <!-- <plugin type="tk.mybatis.mapper.generator.TemplateFilePlugin">
             <property name="targetProject" value="src/test/java"/>
             <property name="targetPackage" value="test.mapper"/>
             <property name="templatePath" value="template/serviceTemplate.ftl"/>
             <property name="mapperSuffix" value="Service"/>
             <property name="fileName" value="${tableClass.shortClassName}${mapperSuffix}.java"/>
-        </plugin>
+        </plugin> -->
         
-        <plugin type="tk.mybatis.mapper.generator.TemplateFilePlugin">
+        <!-- <plugin type="tk.mybatis.mapper.generator.TemplateFilePlugin">
             <property name="targetProject" value="src/test/java"/>
             <property name="targetPackage" value="test.mapper"/>
             <property name="templatePath" value="template/sqlmapTemplate.ftl"/>
             <property name="mapperSuffix" value="Mapper"/>
             <property name="fileName" value="${tableClass.shortClassName}${mapperSuffix}.xml"/>
-        </plugin>
+        </plugin> -->
 	
 		<jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-			connectionURL="jdbc:mysql://121.196.225.245:13306/magazine" 
-			userId="magazine"
-			password="GLS$HRJnHMSl7K8y" />
+			connectionURL="jdbc:mysql://121.40.202.148:3306/india"
+			userId="bujiang"
+			password="b2=u0j1%IaoN9g" />
 			
-		<javaModelGenerator targetPackage="com.trainingmag.bi.model"
-			targetProject="src/main/java" />
+		<javaModelGenerator targetPackage="com.ealing.cloud.destroyer.orders.entity" targetProject="src/test/java" />
 			
-		<sqlMapGenerator targetPackage="com.trainingmag.bi.mapper"
-			targetProject="src/main/resources" />
+		<!-- <sqlMapGenerator targetPackage="com.trainingmag.bi.mapper"
+			targetProject="src/main/resources" /> -->
 			
-		<javaClientGenerator targetPackage="com.trainingmag.bi.mapper"
-			targetProject="src/main/java" type="XMLMAPPER" />
+		<!-- <javaClientGenerator targetPackage="com.trainingmag.bi.mapper"
+			targetProject="src/main/java" type="XMLMAPPER" /> -->
 			
-		<table schema="magazine" tableName="tbl_admin" domainObjectName="AdminEntity" mapperName="AdminMapper">
+		<table tableName="orders">
 			<generatedKey column="id" sqlStatement="JDBC" identity="true"/>
 		</table>
 		

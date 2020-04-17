@@ -1,6 +1,6 @@
-<#assign entity=table.className+"Entity">
+<#assign entity=tableClass.shortClassName+"Entity">
 <#assign sysFields=["id","deleted","createTime","modifyTime","createById","modifyById"]>
-package ${table.pag}.entity;
+package ${tableClass.packageName};
 import java.math.BigDecimal;
 import com.cnjiang.common.mybatis.BaseEntity;
 import io.swagger.annotations.ApiModelProperty;
@@ -14,15 +14,15 @@ import java.util.Date;
  * @author cnjiang
  */
 @Data
-@Table(name = "${table.tableName}")
+@Table(name = "${tableClass.tableName}")
 public class ${entity} extends BaseEntity implements Serializable {
 
-    private static final long serialVersionUID = ${table.uid}L;
+    private static final long serialVersionUID = 1L;
 
-<#list table.fields as index>
-    <#if sysFields?seq_index_of(index.property) = -1>
-    @ApiModelProperty("${index.remark?html}")
-    private ${index.propertyType} ${index.property};
+<#list tableClass.allFields as index>
+    <#if sysFields?seq_index_of(index.fieldName) = -1>
+    @ApiModelProperty("${index.remarks?html}")
+    private ${index.shortTypeName} ${index.fieldName};
     </#if>
 </#list>
 }
