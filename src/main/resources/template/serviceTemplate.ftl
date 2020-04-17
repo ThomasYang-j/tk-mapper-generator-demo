@@ -1,9 +1,9 @@
-<#assign entity=table.className+"Entity">
+<#assign entity=tableClass.shortClassName+"Entity">
 <#assign entityL=entity?uncap_first>
-<#assign service=table.className+"Service">
-package ${table.pag}.service;
+<#assign service=tableClass.shortClassName+"Service">
+package ${tableClass.packageName}.service;
 
-import ${table.pag}.entity.${entity};
+import ${tableClass.packageName}.entity.${entity};
 import com.cnjiang.common.mybatis.BaseService;
 import com.github.pagehelper.PageInfo;
 

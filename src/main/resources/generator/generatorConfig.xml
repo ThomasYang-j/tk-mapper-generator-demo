@@ -43,21 +43,21 @@
             <property name="fileName" value="${tableClass.shortClassName}${mapperSuffix}.java"/>
         </plugin>
         
-        <!-- <plugin type="tk.mybatis.mapper.generator.TemplateFilePlugin">
-            <property name="targetProject" value="src/test/java"/>
-            <property name="targetPackage" value="test.mapper"/>
+        <plugin type="tk.mybatis.mapper.generator.TemplateFilePlugin">
+            <property name="targetProject" value="src/main/java"/>
+            <property name="targetPackage" value="com.ealing.cloud.destroyer.orders.service.impl"/>
             <property name="templatePath" value="template/serviceImplTemplate.ftl"/>
             <property name="mapperSuffix" value="ServiceImpl"/>
             <property name="fileName" value="${tableClass.shortClassName}${mapperSuffix}.java"/>
-        </plugin> -->
+        </plugin>
         
-        <!-- <plugin type="tk.mybatis.mapper.generator.TemplateFilePlugin">
-            <property name="targetProject" value="src/test/java"/>
-            <property name="targetPackage" value="test.mapper"/>
+        <plugin type="tk.mybatis.mapper.generator.TemplateFilePlugin">
+            <property name="targetProject" value="src/main/java"/>
+            <property name="targetPackage" value="com.ealing.cloud.destroyer.orders.service"/>
             <property name="templatePath" value="template/serviceTemplate.ftl"/>
             <property name="mapperSuffix" value="Service"/>
             <property name="fileName" value="${tableClass.shortClassName}${mapperSuffix}.java"/>
-        </plugin> -->
+        </plugin>
         
         <plugin type="tk.mybatis.mapper.generator.TemplateFilePlugin">
             <property name="targetProject" value="src/main/java"/>
