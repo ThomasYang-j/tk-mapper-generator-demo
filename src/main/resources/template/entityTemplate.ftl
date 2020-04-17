@@ -11,7 +11,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cnjiang
+ * @author EALING
  */
 @Data
 @Table(name = "${tableClass.tableName}")

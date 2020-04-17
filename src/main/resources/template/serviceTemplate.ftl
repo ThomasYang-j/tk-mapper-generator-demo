@@ -8,7 +8,7 @@ import com.cnjiang.common.mybatis.BaseService;
 import com.github.pagehelper.PageInfo;
 
 /**
- * @author cnjiang
+ * @author EALING
  */
 public interface ${service} extends BaseService<${entity}> {
 

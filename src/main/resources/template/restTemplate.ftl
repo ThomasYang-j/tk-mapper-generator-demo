@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @author cnjiang
+ * @author EALING
  */
 @RestController
 @RequestMapping("/rest/admin/${tableClass.shortClassName}")

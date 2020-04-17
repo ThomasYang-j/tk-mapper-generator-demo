@@ -6,7 +6,7 @@ import com.cnjiang.common.mybatis.MapperUtil;
 import org.springframework.stereotype.Component;
 
 /**
- * @author cnjiang
+ * @author EALING
  */
 @Component
 public interface ${tableClass.shortClassName}Mapper extends MapperUtil<${entity}> {
