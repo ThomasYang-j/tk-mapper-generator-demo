@@ -1,11 +1,11 @@
-<#assign entity=table.className+"Entity">
+<#assign entity=tableClass.shortClassName+"Entity">
 <#assign entityL=entity?uncap_first>
-<#assign service=table.className+"Service">
+<#assign service=tableClass.shortClassName+"Service">
 <#assign sysFields=["id","deleted","createTime","modifyTime","createById","modifyById"]>
-package ${table.pag}.api;
+package ${tableClass.packageName}.api;
 
-import ${table.pag}.entity.${entity};
-import ${table.pag}.service.${service};
+import ${tableClass.packageName}.entity.${entity};
+import ${tableClass.packageName}.service.${service};
 import com.cnjiang.common.enums.MessageEnum;
 import com.cnjiang.common.utils.JsonResultEntity;
 import com.cnjiang.common.utils.JsonResultUtil;
@@ -25,10 +25,10 @@ import org.springframework.web.bind.annotation.RestController;
  * @author cnjiang
  */
 @RestController
-@RequestMapping("/rest/admin/${table.className}")
+@RequestMapping("/rest/admin/${tableClass.shortClassName}")
 @Api(tags = "${((table.remark)!"")?replace("\r\n", "")}")
 @Slf4j
-public class ${table.className}RestController {
+public class ${tableClass.shortClassName}RestController {
 
     @Autowired
     private ${service} ${service?uncap_first};
@@ -36,13 +36,13 @@ public class ${table.className}RestController {
     @ApiOperation(value = "新增", notes = "新增")
     @RequestMapping(value = "insert", method = RequestMethod.POST)
     @ApiImplicitParams({
-    <#list table.fields as index>
-        <#if sysFields?seq_index_of(index.property) = -1>
-            @ApiImplicitParam(name = "${index.property}", value = "${index.remark?html}", required = ${index.required?string("true","false")}, dataType = "${index.propertyType}", paramType = "query"),
+    <#list tableClass.allFields as index>
+        <#if sysFields?seq_index_of(index.fieldName) = -1>
+            @ApiImplicitParam(name = "${index.fieldName}", value = "${index.remarks?html}", required = ${index.nullable?string("true","false")}, dataType = "${index.shortTypeName}", paramType = "query"),
         </#if>
     </#list>
     })
-    public ResponseEntity<JsonResultEntity> insert(${entity} ${entityL}) {
+    public ResponseEntity<JsonResultEntity<?>> insert(${entity} ${entityL}) {
         Integer r = ${service?uncap_first}.insert(${entityL});
         if (r == 1) {
             return ResponseEntity.ok(JsonResultUtil.success());
@@ -54,15 +54,15 @@ public class ${table.className}RestController {
     @ApiOperation(value = "列表", notes = "列表信息")
     @RequestMapping(value = "list", method = RequestMethod.POST)
     @ApiImplicitParams({
-    <#list table.fields as index>
-        <#if sysFields?seq_index_of(index.property) = -1>
-            @ApiImplicitParam(name = "${index.property}", value = "${index.remark?html}", required = ${index.required?string("true","false")}, dataType = "${index.propertyType}", paramType = "query"),
+    <#list tableClass.allFields as index>
+        <#if sysFields?seq_index_of(index.fieldName) = -1>
+            @ApiImplicitParam(name = "${index.fieldName}", value = "${index.remarks?html}", required = ${index.nullable?string("true","false")}, dataType = "${index.shortTypeName}", paramType = "query"),
         </#if>
     </#list>
             @ApiImplicitParam(name = "pageNum", value = "页码", required = true, dataType = "Integer", paramType = "query"),
             @ApiImplicitParam(name = "pageSize", value = "每页数据量", required = true, dataType = "Integer", paramType = "query")
     })
-    public ResponseEntity<JsonResultEntity> list(${entity} ${entityL}, Integer pageNum, Integer pageSize) {
+    public ResponseEntity<JsonResultEntity<PageInfo<${entity}>>> list(${entity} ${entityL}, Integer pageNum, Integer pageSize) {
         PageInfo<${entity}> pageInfo = ${service?uncap_first}.list(${entityL}, pageNum, pageSize);
         return ResponseEntity.ok(JsonResultUtil.success(pageInfo, MessageEnum.COMMON_STATUS_OK.getCode(), MessageEnum.COMMON_STATUS_OK.getMessage()));
     }
@@ -72,7 +72,7 @@ public class ${table.className}RestController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "ID", required = true, dataType = "Long", paramType = "query")
     })
-    public ResponseEntity<JsonResultEntity> view(String id) {
+    public ResponseEntity<JsonResultEntity<${entity}>> view(String id) {
         ${entity} ${entityL} = ${service?uncap_first}.view(id);
         return ResponseEntity.ok(JsonResultUtil.success(${entityL}, MessageEnum.COMMON_STATUS_OK.getCode(), MessageEnum.COMMON_STATUS_OK.getMessage()));
     }
@@ -80,15 +80,15 @@ public class ${table.className}RestController {
     @ApiOperation(value = "修改", notes = "修改")
     @RequestMapping(value = "update", method = RequestMethod.POST)
     @ApiImplicitParams({
-    <#list table.fields as index>
-        <#if index.property="id">
-            @ApiImplicitParam(name = "${index.property}", value = "${index.remark?html}", required = ${index.required?string("true","false")}, dataType = "${index.propertyType}", paramType = "query"),
-        <#elseif sysFields?seq_index_of(index.property) = -1>
-            @ApiImplicitParam(name = "${index.property}", value = "${index.remark?html}", required = ${index.required?string("true","false")}, dataType = "${index.propertyType}", paramType = "query"),
+    <#list tableClass.allFields as index>
+        <#if index.fieldName="id">
+            @ApiImplicitParam(name = "${index.fieldName}", value = "${index.remarks?html}", required = ${index.nullable?string("true","false")}, dataType = "${index.shortTypeName}", paramType = "query"),
+        <#elseif sysFields?seq_index_of(index.fieldName) = -1>
+            @ApiImplicitParam(name = "${index.fieldName}", value = "${index.remarks?html}", required = ${index.nullable?string("true","false")}, dataType = "${index.shortTypeName}", paramType = "query"),
         </#if>
     </#list>
     })
-    public ResponseEntity<JsonResultEntity> update(${entity} ${entityL}) {
+    public ResponseEntity<JsonResultEntity<?>> update(${entity} ${entityL}) {
         Integer r = ${service?uncap_first}.update(${entityL});
         if (r == 1) {
             return ResponseEntity.ok(JsonResultUtil.success());
@@ -102,7 +102,7 @@ public class ${table.className}RestController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "ID", required = true, dataType = "String", paramType = "query")
     })
-    public ResponseEntity<JsonResultEntity> remove(String id) {
+    public ResponseEntity<JsonResultEntity<?>> remove(String id) {
         Integer r = ${service?uncap_first}.remove(id);
         if (r == 1) {
             return ResponseEntity.ok(JsonResultUtil.success());

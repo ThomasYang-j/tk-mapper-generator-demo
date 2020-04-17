@@ -1,6 +1,6 @@
 <#assign entity=tableClass.shortClassName+"Entity">
 <#assign sysFields=["id","deleted","createTime","modifyTime","createById","modifyById"]>
-package ${tableClass.packageName};
+package ${tableClass.packageName}.entity;
 import java.math.BigDecimal;
 import com.cnjiang.common.mybatis.BaseEntity;
 import io.swagger.annotations.ApiModelProperty;

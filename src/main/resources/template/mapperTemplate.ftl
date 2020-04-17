@@ -1,7 +1,7 @@
-<#assign entity=table.className+"Entity">
-package ${table.pag}.mapper;
+<#assign entity=tableClass.shortClassName+"Entity">
+package ${tableClass.packageName}.mapper;
 
-import ${table.pag}.entity.${entity};
+import ${tableClass.packageName}.entity.${entity};
 import com.cnjiang.common.mybatis.MapperUtil;
 import org.springframework.stereotype.Component;
 
@@ -9,5 +9,5 @@ import org.springframework.stereotype.Component;
  * @author cnjiang
  */
 @Component
-public interface ${table.className}Mapper extends MapperUtil<${entity}> {
+public interface ${tableClass.shortClassName}Mapper extends MapperUtil<${entity}> {
 }
