@@ -43,6 +43,7 @@
             <property name="fileName" value="${tableClass.shortClassName}${mapperSuffix}.java"/>
         </plugin>
         
+        <!--通用代码生成器插件 serviceImpl-->
         <plugin type="tk.mybatis.mapper.generator.TemplateFilePlugin">
             <property name="targetProject" value="src/main/java"/>
             <property name="targetPackage" value="com.ealing.cloud.destroyer.orders.service.impl"/>
@@ -51,6 +52,7 @@
             <property name="fileName" value="${tableClass.shortClassName}${mapperSuffix}.java"/>
         </plugin>
         
+        <!--通用代码生成器插件 service-->
         <plugin type="tk.mybatis.mapper.generator.TemplateFilePlugin">
             <property name="targetProject" value="src/main/java"/>
             <property name="targetPackage" value="com.ealing.cloud.destroyer.orders.service"/>
